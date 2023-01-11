@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn {
+  @apply text-base font-medium cursor-pointer py-1.5 px-3 flex justify-start items-center;
+}
+
+.listBtn {
+  @apply h-full w-full flex justify-center items-center px-2 hover:bg-slate-600 hover:text-slate-50 rounded-md;
+}
+
+.visibleList {
+  @apply bg-slate-100  h-[130px]  absolute top-[35px] right-0 flex flex-col justify-around rounded;
+}
+
+* {
+  box-sizing: border-box;
+}
