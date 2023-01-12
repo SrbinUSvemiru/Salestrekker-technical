@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import useComponentVisible from "../Utilities/Utilities";
 
-function IncomeDetailesPage({ selectedIncomeRange, setSelectedIncomeRange }) {
+function IncomeDetailesPage({
+  selectedIncomeRange,
+  setSelectedIncomeRange,
+  selectedIncomeType,
+  setSelectedIncomeType,
+  clickedPage,
+}) {
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false);
 
@@ -10,9 +16,17 @@ function IncomeDetailesPage({ selectedIncomeRange, setSelectedIncomeRange }) {
     setIsComponentVisible(false);
   };
 
+  const handleIncomeBtnClick = (event) => {
+    setSelectedIncomeType(event.target.value);
+  };
+
   return (
-    <div className="w-full  p-3 ">
-      <div className="w-full  font-medium flex justify-center items-center py-2  text-white  rounded z-10">
+    <div
+      className={
+        clickedPage === "income" ? "w-full p-3 min-h-[550px] " : "hidden"
+      }
+    >
+      <div className="w-full  font-medium flex justify-center items-center py-7  text-white  rounded z-10 bg-gradient-to-br from-[#39c7b2] to-[#5be9d1] shadow-[inset_0_2px_10px_0_rgb(0,0,0,0.3)] ">
         <svg
           className="w-[60px]"
           xmlns="http://www.w3.org/2000/svg"
@@ -28,16 +42,19 @@ function IncomeDetailesPage({ selectedIncomeRange, setSelectedIncomeRange }) {
           />
         </svg>
 
-        <p className="text-[25px] leading-7 ">Income tax calculator</p>
+        <p className="text-[25px] leading-7 text-[rgba(255,255,255,0.5)]">
+          Income tax calculator
+        </p>
       </div>
-      <div className=" w-full mx-auto py-5">
-        <div className="text-slate-700 rounded shadow-md w-full py-3 px-3 bg-[#fff] z-10">
+      <div className=" w-full mx-auto py-5 max-w-[500px] mt-5 ">
+        <div className="text-slate-700 rounded shadow-md w-full py-5 px-3 bg-[#fff] z-10">
           <p className="font-medium mb-3">What is your total income?</p>
           <div className="flex justify-end items-center relative border-2 rounded-md ">
             <div className=" rounded-l-md h-[25px] grow">
               <input
-                type="text"
-                className="w-full h-full rounded-l-md shadow-[inset_0_2px_10px_0_rgb(0,0,0,0.1)] focus:outline-none"
+                type="number"
+                placeholder="e.g 15,000"
+                className="w-full pl-3 h-full rounded-l-md shadow-[inset_0_2px_10px_0_rgb(0,0,0,0.1)] focus:outline-none placeholder:font-light placeholder:italic placeholder:text-s"
               />
             </div>
             <div>
@@ -85,21 +102,35 @@ function IncomeDetailesPage({ selectedIncomeRange, setSelectedIncomeRange }) {
             </div>
           </div>
         </div>
-        <div className="text-slate-700 rounded shadow-md w-full py-3 px-4 mt-7 bg-white max-w-sm">
+        <div className="text-slate-700 rounded shadow-md w-full py-5 px-4 mt-7 bg-white ">
           <p className="font-medium mb-3">Please choose income type</p>
-          <div className="flex flex-col">
-            <button className="bg-[#fe787a] rounded-md text-slate-50 cursor-pointer font-medium">
+          <div className="flex flex-col sm:flex-row justify-between ">
+            <button
+              className={
+                selectedIncomeType === "gross"
+                  ? "incomeBtn  bg-gradient-to-br from-[#fe7c7b] to-[#ed6466] pointer-events-none text-white"
+                  : "incomeBtn "
+              }
+              value="gross"
+              onClick={handleIncomeBtnClick}
+            >
               Gross
             </button>
-            <button className="bg-[#fe787a] rounded-md mt-2 text-slate-50 cursor-pointer font-medium">
+            <button
+              className={
+                selectedIncomeType === "net"
+                  ? "incomeBtn mt-2 bg-gradient-to-br from-[#fe7c7b] to-[#ed6466] pointer-events-none text-slate-50 sm:mt-0"
+                  : "incomeBtn mt-2 sm:mt-0"
+              }
+              value="net"
+              onClick={handleIncomeBtnClick}
+            >
               Net
             </button>
           </div>
         </div>
-        <div className="text-slate-700  w-full py-3 px-2 mt-7 flex justify-center ">
-          <button className="bg-[#4be1c9] rounded-md shadow-[21px_10px_33px_-4px_rgba(0,0,0,0.5)]  mt-2 text-slate-50 cursor-pointer font-medium w-full">
-            Calculate
-          </button>
+        <div className="text-slate-700  w-full py-3  mt-7 flex justify-center ">
+          <button className="calculateBtn">Calculate</button>
         </div>
       </div>
     </div>

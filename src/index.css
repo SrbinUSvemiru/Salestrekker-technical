@@ -2,12 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+.app {
+  @apply container  w-screen h-screen flex justify-center  p-5 relative bg-slate-50;
+}
+
+/*Containers*/
+
+.pageContainer {
+  @apply w-full  rounded-md shadow-xl overflow-hidden z-10 relative max-w-screen-sm h-fit;
+}
+
+/*Buttons*/
+
 .btn {
   @apply text-base font-medium cursor-pointer py-1.5 px-3 flex justify-start items-center;
 }
 
+.incomeBtn {
+  @apply rounded-md  cursor-pointer  font-medium  shadow-md py-1 border-[1px] hover:border-[#fd787b] hover:text-[#fd787b]  transition-all duration-300 sm:w-[49%];
+}
+
 .listBtn {
   @apply h-full w-full flex justify-center items-center px-2 hover:bg-slate-600 hover:text-slate-50 rounded-md;
+}
+
+.calculateBtn {
+  @apply rounded-md  cursor-pointer font-medium  w-full shadow-md py-1 border-[1px] hover:border-[#3eeaca] hover:text-[#3eeaca];
+}
+
+.calculateBtnClicked {
+  @apply bg-gradient-to-br from-[#3eeaca] to-[#33dcc0];
 }
 
 .visibleList {
@@ -16,4 +40,14 @@
 
 * {
   box-sizing: border-box;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
