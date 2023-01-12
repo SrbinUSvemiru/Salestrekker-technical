@@ -7,6 +7,7 @@ function IncomeDetailesPage({
   selectedIncomeType,
   setSelectedIncomeType,
   clickedPage,
+  handleInput,
 }) {
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false);
@@ -52,6 +53,7 @@ function IncomeDetailesPage({
           <div className="flex justify-end items-center relative border-2 rounded-md ">
             <div className=" rounded-l-md h-[25px] grow">
               <input
+                onChange={handleInput}
                 type="number"
                 placeholder="e.g 15,000"
                 className="w-full pl-3 h-full rounded-l-md shadow-[inset_0_2px_10px_0_rgb(0,0,0,0.1)] focus:outline-none placeholder:font-light placeholder:italic placeholder:text-s"
@@ -108,8 +110,8 @@ function IncomeDetailesPage({
             <button
               className={
                 selectedIncomeType === "gross"
-                  ? "incomeBtn  bg-gradient-to-br from-[#fe7c7b] to-[#ed6466] pointer-events-none text-white"
-                  : "incomeBtn "
+                  ? "incomeBtn   pointer-events-none text-white before:left-0 before:shadow-[inset_0px_0px_10px_5px_rgb(7,255,255,0.3)]"
+                  : "incomeBtn  "
               }
               value="gross"
               onClick={handleIncomeBtnClick}
@@ -119,8 +121,8 @@ function IncomeDetailesPage({
             <button
               className={
                 selectedIncomeType === "net"
-                  ? "incomeBtn mt-2 bg-gradient-to-br from-[#fe7c7b] to-[#ed6466] pointer-events-none text-slate-50 sm:mt-0"
-                  : "incomeBtn mt-2 sm:mt-0"
+                  ? "incomeBtn mt-2  pointer-events-none text-white sm:mt-0 before:left-0 before:shadow-[inset_0px_0px_10px_5px_rgb(7,255,255,0.3)]"
+                  : "incomeBtn mt-2 sm:mt-0 "
               }
               value="net"
               onClick={handleIncomeBtnClick}

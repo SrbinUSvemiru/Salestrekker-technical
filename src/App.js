@@ -9,6 +9,10 @@ const App = () => {
   const [selectedIncomeType, setSelectedIncomeType] = useState(null);
   const [inputedIncomeValue, setInputedIncomeValue] = useState();
 
+  const handleInput = (event) => {
+    setInputedIncomeValue(event.target.value);
+  };
+
   return (
     <div className="app">
       <div
@@ -46,6 +50,7 @@ const App = () => {
           clickedPage={clickedPage}
           selectedIncomeType={selectedIncomeType}
           setSelectedIncomeType={setSelectedIncomeType}
+          handleInput={handleInput}
         />
         <IncomeOverviewPage clickedPage={clickedPage} />
       </div>

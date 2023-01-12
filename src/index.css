@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .app {
-  @apply container  w-screen h-screen flex justify-center  p-5 relative bg-slate-50;
+  @apply w-screen h-screen flex justify-center  p-5 relative bg-slate-200;
 }
 
 /*Containers*/
@@ -19,7 +19,7 @@
 }
 
 .incomeBtn {
-  @apply rounded-md  cursor-pointer  font-medium  shadow-md py-1 border-[1px] hover:border-[#fd787b] hover:text-[#fd787b]  transition-all duration-300 sm:w-[49%];
+  @apply rounded-md  cursor-pointer z-10  font-medium relative shadow-md ease-in-out py-1   overflow-hidden transition-all duration-300 sm:w-[49%] before:content-[''] before:transition-all before:duration-300 before:absolute before:w-full before:h-[110%] before:bg-gradient-to-br from-[#3eeaca] to-[#33dcc0] before:top-0 before:left-[-100%] before:ease-in-out before:z-[-1] hover:before:left-[0%];
 }
 
 .listBtn {
@@ -35,7 +35,7 @@
 }
 
 .visibleList {
-  @apply bg-slate-100  h-[130px]  absolute top-[35px] right-0 flex flex-col justify-around rounded;
+  @apply bg-slate-100  h-[130px]  absolute top-[35px] right-0 flex flex-col justify-around rounded z-30;
 }
 
 * {
