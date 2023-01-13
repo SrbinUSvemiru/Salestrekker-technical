@@ -8,6 +8,9 @@ function IncomeDetailesPage({
   setSelectedIncomeType,
   clickedPage,
   handleInput,
+  conditionsForCalculation,
+  setClickedPage,
+  inputedIncomeValue,
 }) {
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false);
@@ -27,7 +30,7 @@ function IncomeDetailesPage({
         clickedPage === "income" ? "w-full p-3 min-h-[550px] " : "hidden"
       }
     >
-      <div className="w-full  font-medium flex justify-center items-center py-7  text-white  rounded z-10 bg-gradient-to-br from-[#39c7b2] to-[#5be9d1] shadow-[inset_0_2px_10px_0_rgb(0,0,0,0.3)] ">
+      <div className="w-full  font-medium flex justify-center items-center py-8  text-slate-300  rounded z-10  ">
         <svg
           className="w-[60px]"
           xmlns="http://www.w3.org/2000/svg"
@@ -43,20 +46,20 @@ function IncomeDetailesPage({
           />
         </svg>
 
-        <p className="text-[25px] leading-7 text-[rgba(255,255,255,0.5)]">
+        <p className="text-[25px] leading-7 text-slate-300">
           Income tax calculator
         </p>
       </div>
-      <div className=" w-full mx-auto py-5 max-w-[500px] mt-5 ">
-        <div className="text-slate-700 rounded shadow-md w-full py-5 px-3 bg-[#fff] z-10">
+      <div className=" w-full mx-auto py-8 max-w-[700px]  ">
+        <div className="text-slate-700 rounded shadow-md w-full py-8  px-5 bg-[#fff] z-10">
           <p className="font-medium mb-3">What is your total income?</p>
-          <div className="flex justify-end items-center relative border-2 rounded-md ">
-            <div className=" rounded-l-md h-[25px] grow">
+          <div className="flex justify-end items-center relative border-2 rounded-md  px-[1px] py-[1px]">
+            <div className=" rounded-l-md h-[25px] grow ">
               <input
                 onChange={handleInput}
                 type="number"
                 placeholder="e.g 15,000"
-                className="w-full pl-3 h-full rounded-l-md shadow-[inset_0_2px_10px_0_rgb(0,0,0,0.1)] focus:outline-none placeholder:font-light placeholder:italic placeholder:text-s"
+                className="w-full pl-3 h-full rounded-l-md shadow-[inset_0_2px_10px_0_rgb(0,0,0,0.1)] focus:outline-pink-500 placeholder:font-light placeholder:italic placeholder:text-s focus:bg-sky-100 invalid:border-pink-500"
               />
             </div>
             <div>
@@ -104,13 +107,13 @@ function IncomeDetailesPage({
             </div>
           </div>
         </div>
-        <div className="text-slate-700 rounded shadow-md w-full py-5 px-4 mt-7 bg-white ">
+        <div className="text-slate-700 rounded shadow-md w-full py-8  px-5 mt-7 bg-white ">
           <p className="font-medium mb-3">Please choose income type</p>
           <div className="flex flex-col sm:flex-row justify-between ">
             <button
               className={
                 selectedIncomeType === "gross"
-                  ? "incomeBtn   pointer-events-none text-white before:left-0 before:shadow-[inset_0px_0px_10px_5px_rgb(7,255,255,0.3)]"
+                  ? "incomeBtn   pointer-events-none text-white before:top-0 before:shadow-[inset_0px_0px_10px_5px_rgb(7,255,255,0.3)]"
                   : "incomeBtn  "
               }
               value="gross"
@@ -121,7 +124,7 @@ function IncomeDetailesPage({
             <button
               className={
                 selectedIncomeType === "net"
-                  ? "incomeBtn mt-2  pointer-events-none text-white sm:mt-0 before:left-0 before:shadow-[inset_0px_0px_10px_5px_rgb(7,255,255,0.3)]"
+                  ? "incomeBtn mt-2  pointer-events-none text-white sm:mt-0 before:top-0 before:shadow-[inset_0px_0px_10px_5px_rgb(7,255,255,0.3)]"
                   : "incomeBtn mt-2 sm:mt-0 "
               }
               value="net"
@@ -132,7 +135,16 @@ function IncomeDetailesPage({
           </div>
         </div>
         <div className="text-slate-700  w-full py-3  mt-7 flex justify-center ">
-          <button className="calculateBtn">Calculate</button>
+          <button
+            onClick={() => setClickedPage("income-detailes")}
+            className={
+              conditionsForCalculation
+                ? "calculateBtn   text-white before:left-0 before:shadow-[inset_0px_0px_10px_5px_rgb(7,255,255,0.3)] scale-[1.1] shadow-[12px_30px_21px_-4px_rgba(0,0,0,0.1)]"
+                : "calculateBtn pointer-events-none shadow-md"
+            }
+          >
+            Calculate
+          </button>
         </div>
       </div>
     </div>

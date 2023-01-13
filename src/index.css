@@ -9,7 +9,7 @@
 /*Containers*/
 
 .pageContainer {
-  @apply w-full  rounded-md shadow-xl overflow-hidden z-10 relative max-w-screen-sm h-fit;
+  @apply w-full  rounded-md shadow-xl overflow-hidden z-10 relative max-w-[900px] h-fit;
 }
 
 /*Buttons*/
@@ -19,7 +19,7 @@
 }
 
 .incomeBtn {
-  @apply rounded-md  cursor-pointer z-10  font-medium relative shadow-md ease-in-out py-1   overflow-hidden transition-all duration-300 sm:w-[49%] before:content-[''] before:transition-all before:duration-300 before:absolute before:w-full before:h-[110%] before:bg-gradient-to-br from-[#3eeaca] to-[#33dcc0] before:top-0 before:left-[-100%] before:ease-in-out before:z-[-1] hover:before:left-[0%];
+  @apply rounded-md  cursor-pointer z-10  font-medium relative shadow-md ease-in-out py-1   overflow-hidden transition-all duration-300 sm:w-[49%] before:content-[''] before:transition-all before:duration-300 before:absolute before:w-full before:h-[110%] before:bg-gradient-to-br from-[#3eeaca] to-[#33dcc0] before:left-0 before:top-[-110%] before:ease-in-out before:z-[-1] hover:before:top-[0%];
 }
 
 .listBtn {
@@ -27,11 +27,7 @@
 }
 
 .calculateBtn {
-  @apply rounded-md  cursor-pointer font-medium  w-full shadow-md py-1 border-[1px] hover:border-[#3eeaca] hover:text-[#3eeaca];
-}
-
-.calculateBtnClicked {
-  @apply bg-gradient-to-br from-[#3eeaca] to-[#33dcc0];
+  @apply rounded-md bg-slate-400 cursor-pointer z-10  font-medium relative  ease-in-out py-1 w-full  overflow-hidden transition-all max-w-[200px] sm:max-w-full duration-300  before:content-[''] before:transition-all before:duration-500 before:absolute before:w-full before:h-[110%] before:bg-gradient-to-br from-[#3eeaca] to-[#33dcc0] before:top-0 before:left-[-100%] before:ease-in-out before:z-[-1] before:delay-300;
 }
 
 .visibleList {
