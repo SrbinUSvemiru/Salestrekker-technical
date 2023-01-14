@@ -55,10 +55,10 @@ function calculateFortnightly(inputValue, incomeType) {
   let annuallyValues = taxCalculator(Math.round(inputValue * 26), incomeType);
 
   return {
-    weekly: weeklyValues,
-    fortnightly: fortnightlyValues,
-    monthly: monthlyValues,
-    annually: annuallyValues,
+    weekly: { ...weeklyValues, frequency: "Weekly" },
+    fortnightly: { ...fortnightlyValues, frequency: "Fortnightly" },
+    monthly: { ...monthlyValues, frequency: "Monthly" },
+    annually: { ...annuallyValues, frequency: "Annually" },
   };
 }
 
@@ -72,10 +72,10 @@ function calculateMonthly(inputValue, incomeType) {
   let annuallyValues = taxCalculator(Math.round(inputValue * 12), incomeType);
 
   return {
-    weekly: weeklyValues,
-    fortnightly: fortnightlyValues,
-    monthly: monthlyValues,
-    annually: annuallyValues,
+    weekly: { ...weeklyValues, frequency: "Weekly" },
+    fortnightly: { ...fortnightlyValues, frequency: "Fortnightly" },
+    monthly: { ...monthlyValues, frequency: "Monthly" },
+    annually: { ...annuallyValues, frequency: "Annually" },
   };
 }
 
@@ -89,10 +89,10 @@ function calculateAnnually(inputValue, incomeType) {
   let annuallyValues = taxCalculator(inputValue, incomeType);
 
   return {
-    weekly: weeklyValues,
-    fortnightly: fortnightlyValues,
-    monthly: monthlyValues,
-    annually: annuallyValues,
+    weekly: { ...weeklyValues, frequency: "Weekly" },
+    fortnightly: { ...fortnightlyValues, frequency: "Fortnightly" },
+    monthly: { ...monthlyValues, frequency: "Monthly" },
+    annually: { ...annuallyValues, frequency: "Annually" },
   };
 }
 
