@@ -4,29 +4,21 @@ import IncomeOverviewPage from "./Components/IncomeOverviewPage";
 import "./index.css";
 
 const App = () => {
-  const [clickedPage, setClickedPage] = useState("income-detailes");
+  const [clickedPage, setClickedPage] = useState("income");
   const [selectedIncomeRange, setSelectedIncomeRange] = useState("weekly");
   const [selectedIncomeType, setSelectedIncomeType] = useState(null);
   const [inputedIncomeValue, setInputedIncomeValue] = useState(null);
-  const [inputedValueString, setInputedValueString] = useState();
+  const [finalValuesObject, setFinalValuesObject] = useState({});
   const [conditionsForCalculation, setConditionsForCalculation] =
-    useState(true);
+    useState(false);
 
   useEffect(() => {
-    if (
-      selectedIncomeType !== null &&
-      inputedIncomeValue !== null &&
-      inputedIncomeValue > 100
-    ) {
+    if (inputedIncomeValue > 50 && selectedIncomeType !== null) {
       setConditionsForCalculation(true);
     } else {
       setConditionsForCalculation(false);
     }
   }, [selectedIncomeType, inputedIncomeValue]);
-
-  const handleInput = (event) => {
-    setInputedIncomeValue(event.target.value);
-  };
 
   return (
     <div className="app">
@@ -34,7 +26,7 @@ const App = () => {
         className={
           clickedPage === "income"
             ? "pageContainer bg-gradient-to-br from-[#fff5f6] to-[#f0f1fd] relative"
-            : "pageContainer bg-gradient-to-br from-[#fff5f6] to-[#f0f1fd]  "
+            : "pageContainer bg-gradient-to-br from-[#fff5f6] to-[#f0f1fd] relative "
         }
       >
         <div className=" flex  items-center justify-start w-full   ">
@@ -42,7 +34,7 @@ const App = () => {
             className={
               clickedPage === "income-detailes"
                 ? "btn shadow-[inset_0_2px_10px_0_rgb(0,0,0,0.3)] bg-stone-100  text-slate-400 rounded-br-md "
-                : "btn text-slate-500"
+                : "btn text-slate-500 "
             }
             onClick={() => setClickedPage("income")}
           >
@@ -51,8 +43,8 @@ const App = () => {
           <button
             className={
               clickedPage === "income"
-                ? "btn shadow-[inset_0_2px_10px_0_rgb(0,0,0,0.3)] grow  bg-stone-100   text-slate-400 rounded-bl-md "
-                : "btn grow  text-slate-500   "
+                ? "btn  grow  bg-stone-100   text-slate-400 rounded-bl-md shadow-[inset_0_2px_10px_0_rgb(0,0,0,0.3)] "
+                : "btn grow  text-slate-500    rounded-bl-md shadow-none "
             }
             onClick={() => setClickedPage("income-detailes")}
           >
@@ -66,9 +58,11 @@ const App = () => {
           setClickedPage={setClickedPage}
           selectedIncomeType={selectedIncomeType}
           setSelectedIncomeType={setSelectedIncomeType}
-          handleInput={handleInput}
+          setInputedIncomeValue={setInputedIncomeValue}
           inputedIncomeValue={inputedIncomeValue}
           conditionsForCalculation={conditionsForCalculation}
+          setFinalValuesObject={setFinalValuesObject}
+          finalValuesObject={finalValuesObject}
         />
         <IncomeOverviewPage
           clickedPage={clickedPage}
@@ -76,6 +70,7 @@ const App = () => {
           selectedIncomeType={selectedIncomeType}
           inputedIncomeValue={inputedIncomeValue}
           conditionsForCalculation={conditionsForCalculation}
+          finalValuesObject={finalValuesObject}
         />
       </div>
     </div>

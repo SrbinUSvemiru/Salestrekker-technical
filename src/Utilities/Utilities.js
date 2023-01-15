@@ -25,12 +25,22 @@ function taxCalculator(inputValue, incomeType) {
   if (incomeType === "gross") {
     let netValue = Math.round((55 / 100) * inputValue);
     let tax = inputValue - netValue;
+    let grossValue = inputValue;
 
-    return { netValue: netValue, tax: tax, grossValue: inputValue };
+    return {
+      netValue: netValue,
+      tax: tax,
+      grossValue: grossValue,
+    };
   } else {
     let grossValue = Math.round(inputValue / (55 / 100));
     let tax = grossValue - inputValue;
-    return { netValue: inputValue, tax: tax, grossValue: grossValue };
+    let netValue = inputValue;
+    return {
+      netValue: netValue,
+      tax: tax,
+      grossValue: grossValue,
+    };
   }
 }
 
@@ -96,24 +106,24 @@ function calculateAnnually(inputValue, incomeType) {
   };
 }
 
-export function calculateIncome(incomeRange, incomeType, incomeValue) {
-  let selected = incomeRange;
+export function calculateIncome({ inputValue, incomeType, frequency }) {
+  let selected = frequency;
 
   switch (selected) {
     case "weekly":
-      selected = calculateWeekly(incomeValue, incomeType);
+      selected = calculateWeekly(inputValue, incomeType);
       break;
     case "fortnightly":
-      selected = calculateFortnightly(incomeValue, incomeType);
+      selected = calculateFortnightly(inputValue, incomeType);
       break;
     case "monthly":
-      selected = calculateMonthly(incomeValue, incomeType);
+      selected = calculateMonthly(inputValue, incomeType);
       break;
     case "annually":
-      selected = calculateAnnually(incomeValue, incomeType);
+      selected = calculateAnnually(inputValue, incomeType);
       break;
     default:
-      selected = calculateWeekly(incomeValue, incomeType);
+      selected = calculateWeekly(inputValue, incomeType);
   }
   return selected;
 }

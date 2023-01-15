@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import useComponentVisible from "../Utilities/Utilities";
 
 function IncomeDetailesPage({
@@ -7,10 +7,12 @@ function IncomeDetailesPage({
   selectedIncomeType,
   setSelectedIncomeType,
   clickedPage,
-  handleInput,
+  setInputedIncomeValue,
   conditionsForCalculation,
   setClickedPage,
   inputedIncomeValue,
+
+  setFinalValuesObject,
 }) {
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false);
@@ -24,14 +26,40 @@ function IncomeDetailesPage({
     setSelectedIncomeType(event.target.value);
   };
 
+  const handleCalculateBtnClick = () => {
+    setFinalValuesObject({
+      inputValue: inputedIncomeValue,
+      incomeType: selectedIncomeType,
+      frequency: selectedIncomeRange,
+    });
+    setClickedPage("income-detailes");
+  };
+
+  const handleInput = (event) => {
+    var removeChar = event.target.value.replace(/[^0-9\.]/g, "");
+
+    var removeDot = removeChar.replace(/\./g, "");
+    event.target.value = removeDot;
+
+    var formatedNumber = event.target.value.replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      ","
+    );
+
+    event.target.value = formatedNumber;
+
+    const num = parseFloat(event.target.value.replaceAll(",", ""));
+    setInputedIncomeValue(num);
+  };
+
   return (
     <div
       className={
-        clickedPage === "income" ? "w-full p-3 min-h-[550px] " : "hidden"
+        clickedPage === "income" ? "w-full p-3 min-h-[600px] " : "hidden"
       }
     >
       <div className="w-full  font-normal flex justify-center items-center py-8  text-[#5c608f] rounded z-10  ">
-        <div className="w-[60px]">
+        <div className="w-[2rem] sm:w-[4rem]">
           <svg
             className="w-full"
             xmlns="http://www.w3.org/2000/svg"
@@ -48,17 +76,17 @@ function IncomeDetailesPage({
           </svg>
         </div>
 
-        <h1 className="text-[40px]">Income tax calculator</h1>
+        <h1 className="sm:text-[3rem] text-[1.5rem]">Income tax calculator</h1>
       </div>
       <div className=" w-full mx-auto py-8 max-w-[700px]  ">
-        <div className="text-slate-700 rounded shadow-md w-full py-8  px-5 bg-[#fff] z-10">
+        <div className="text-slate-600 rounded shadow-md w-full py-8  px-5 bg-[#fff] z-10">
           <p className="font-medium mb-3">What is your total income?</p>
           <div className="flex justify-end items-center relative border-2 rounded-md  ">
             <div className=" rounded-l-md h-[25px] grow ">
               <input
                 onChange={handleInput}
-                type="number"
-                placeholder="e.g 15,000"
+                type="text"
+                placeholder="e.g $15,000"
                 className={
                   inputedIncomeValue < 50
                     ? "w-full pl-3 h-full rounded-l-md shadow-[inset_0_2px_10px_0_rgb(0,0,0,0.1)] focus:outline-red-400 placeholder:font-light placeholder:italic placeholder:text-s focus:bg-red-50"
@@ -68,7 +96,7 @@ function IncomeDetailesPage({
             </div>
 
             <p
-              className="bg-slate-300 rounded-r-md px-2 h-full cursor-pointer ml-[1px] "
+              className="bg-slate-300 rounded-r-md px-2 h-full cursor-pointer ml-[1px] hover:text-stone-100"
               onClick={() => setIsComponentVisible(true)}
             >
               {selectedIncomeRange.charAt(0).toUpperCase() +
@@ -111,7 +139,7 @@ function IncomeDetailesPage({
             )}
           </div>
         </div>
-        <div className="text-slate-700 rounded shadow-md w-full py-8  px-5 mt-7 bg-white ">
+        <div className="text-slate-600 rounded shadow-md w-full py-8  px-5 mt-7 bg-white ">
           <p className="font-medium mb-3">Please choose income type</p>
           <div className="flex flex-col sm:flex-row justify-between ">
             <button
@@ -140,10 +168,10 @@ function IncomeDetailesPage({
         </div>
         <div className="text-slate-700  w-full py-3  mt-7 flex justify-center ">
           <button
-            onClick={() => setClickedPage("income-detailes")}
+            onClick={handleCalculateBtnClick}
             className={
               conditionsForCalculation
-                ? "calculateBtn   text-white before:left-0 before:shadow-[inset_0px_0px_10px_5px_rgb(7,255,255,0.3)] scale-[1.1] shadow-[12px_30px_21px_-4px_rgba(0,0,0,0.1)]"
+                ? "calculateBtn   text-white before:left-0 before:shadow-[inset_0px_0px_10px_5px_rgb(7,255,255,0.3)] scale-[1.1] shadow-[12px_30px_21px_-4px_rgba(0,0,0,0.1)] "
                 : "calculateBtn pointer-events-none shadow-md"
             }
           >

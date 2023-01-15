@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 .app {
-  @apply w-screen h-screen flex justify-center  p-5 relative bg-slate-200;
+  @apply w-screen h-screen flex justify-center min-[500px]:items-center  relative bg-slate-200 overflow-auto;
 }
 
 /*Containers*/
 
 .pageContainer {
-  @apply w-full  rounded-md shadow-[0px_10px_40px_10px_rgba(0,0,0,0.1)]  border-[1px] overflow-hidden z-10 relative max-w-[900px] h-fit;
+  @apply w-full  rounded-md shadow-[0px_10px_40px_10px_rgba(0,0,0,0.1)]  border-[1px] max-[500px]:mt-5 ml-2 mr-2 mb-2 overflow-hidden z-10 relative max-w-[900px] h-fit;
 }
 
 /*Buttons*/
 
 .btn {
-  @apply text-base font-medium cursor-pointer py-2 pl-6 flex justify-start items-center w-full;
+  @apply text-base font-medium cursor-pointer py-2 pl-6 flex justify-start items-center w-[50%] hover:text-[#643457] focus:outline-none;
 }
 
 .incomeBtn {
@@ -27,12 +27,14 @@
 }
 
 .calculateBtn {
-  @apply rounded-md bg-slate-400 cursor-pointer z-10  font-medium relative  ease-in-out py-1 w-full  overflow-hidden transition-all max-w-[230px] sm:max-w-full duration-300  before:content-[''] before:transition-all before:duration-500 before:absolute before:w-full before:h-[110%] before:bg-gradient-to-br from-[#3eeaca] to-[#33dcc0] before:top-0 before:left-[-100%] before:ease-in-out before:z-[-1] before:delay-300;
+  @apply rounded-md bg-slate-400 cursor-pointer z-10  font-medium relative  ease-in-out py-1 w-full  overflow-hidden transition-all max-w-[93%] sm:max-w-full duration-300  before:content-[''] before:transition-all before:duration-500 before:absolute before:w-full before:h-[110%] before:bg-gradient-to-br from-[#3eeaca] to-[#33dcc0] before:top-0 before:left-[-100%] before:ease-in-out before:z-[-1] before:delay-300;
 }
 
 .visibleList {
   @apply bg-slate-100  h-[130px] border absolute top-[35px] right-0 flex flex-col justify-around rounded z-30 shadow-[12px_30px_21px_-4px_rgba(0,0,0,0.1)] overflow-hidden;
 }
+
+/*General*/
 
 * {
   box-sizing: border-box;
@@ -43,8 +45,6 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-/*General*/
 
 input[type="number"] {
   -moz-appearance: textfield;
