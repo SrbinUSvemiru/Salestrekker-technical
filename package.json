@@ -4,9 +4,10 @@
   "description": "description",
   "main": "./src/index.js",
   "scripts": {
-    "start": "webpack-dev-server .",
-    "build": "webpack",
-    "test": "test"
+    "webpack": "webpack",
+    "webpack-dev-server": "webpack-dev-server",
+    "dev": "yarn run webpack-dev-server -- --env mode=development",
+    "prod": "yarn run webpack -- --env mode=production"
   },
   "author": "Milos",
   "license": "MIT",
